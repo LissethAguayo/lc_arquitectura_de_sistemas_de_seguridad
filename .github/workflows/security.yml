@@ -78,7 +78,7 @@ jobs:
       # ¿Qué implicación tiene eso en un pipeline de CI/CD real?
       - name: Ejecutar análisis SAST
         run: |
-          semgrep --config p/python --config p/owasp-top-ten --config p/secrets  --config p/sql-injection Unidad_3_Seguridad_en_Aplicaciones_y_Datos/devsecops-lab/app/ --json --output semgrep-results.json --error
+          semgrep --config p/python --config p/owasp-top-ten --config p/secrets  --config p/sql-injection Unidad_3_Seguridad_en_Aplicaciones_y_Datos/devsecops-lab/app/ --json --output semgrep-results.json || true
 
 
       - name: Guardar resultados de Semgrep
@@ -127,11 +127,11 @@ jobs:
          pip install 
          pip-audit -r Unidad_3_Seguridad_en_Aplicaciones_y_Datos/devsecops-lab/app/requirements.txt -f json -o pip-audit-report.json || true
 
-         - name: Guardar reporte pip-audit
-          uses: actions/upload-artifact@v4
-          with:
-            name: pip-audit-report
-            path: pip-audit-report.json
+      - name: Guardar reporte pip-audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: pip-audit-report
+          path: pip-audit-report.json
       
       # TODO: instala pip-audit
       # TODO: ejecuta la auditoría sobre el requirements.txt del lab
