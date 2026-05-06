@@ -123,9 +123,9 @@ jobs:
       # Pregunta: ¿qué CVEs aparecen al correr la auditoría?
       #           ¿Cuáles de los paquetes tienen versiones seguras disponibles?
       - name: Instalar y ejecutar pip-audit
-        run: |  
-         pip install 
-         pip-audit -r Unidad_3_Seguridad_en_Aplicaciones_y_Datos/devsecops-lab/app/requirements.txt -f json -o pip-audit-report.json || true
+        run: |
+          pip install pip-audit
+          pip-audit -r Unidad_3_Seguridad_en_Aplicaciones_y_Datos/devsecops-lab/app/requirements.txt -f json -o pip-audit-report.json || true
 
       - name: Guardar reporte pip-audit
         uses: actions/upload-artifact@v4
